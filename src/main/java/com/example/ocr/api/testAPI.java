@@ -1,6 +1,7 @@
 package com.example.ocr.api;
 
 import com.example.ocr.module.StaffBookmarkService;
+import com.example.ocr.schema.input;
 import com.example.ocr.schema.ocr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -23,9 +23,9 @@ public class testAPI {
 
     @PreAuthorize("permitAll()")
     @PostMapping("/test")
-    public ResponseEntity<ocr> test(@Valid @RequestBody MultipartFile multipartFile) {
+    public ResponseEntity<ocr> test(@Valid @ModelAttribute("uploadForm")  input input) {
         try {
-            return ResponseEntity.ok().body(staffBookmarkService.getImage(multipartFile));
+            return ResponseEntity.ok().body(staffBookmarkService.getImage(input));
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

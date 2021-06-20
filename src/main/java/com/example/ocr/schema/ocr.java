@@ -8,9 +8,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ocr {
-    String image;
-
     String idNo;
-
     String name;
+    String birthday = "";
+    String hometown = "";
+    String address = "";
+
+    String expirydate = "";
+
+    String dantoc = "";
+    String tongiao = "";
+    String dauhieu = "";
+
 }
